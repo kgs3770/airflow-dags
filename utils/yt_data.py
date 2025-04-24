@@ -64,7 +64,21 @@ def get_comments(youtube, video_id):
         comments.append(comment)
     return comments
 
-for video_id in latest_video_ids:
-    result = get_comments(youtube, video_id)
-    print(result)
+# 구현한 함수들 실행하여 최종 형태 리턴
+def get_handle_to_comments(youtube, handle):
+    channel_id = get_channel_id(youtube, handle)
+    latest_video_ids = get_latest_video_ids(youtube, channel_id)
+
+    all_comments = {}
+
+    for video_id in latest_video_ids:
+        comments = get_comments(youtube, video_id)
+        all_comments[video_id] = comments
+
+    return {
+        'handle': handle,
+        'all_comments': all_comments
+    }
+
+get_handle_to_comments(youtube, target_handle)
 
