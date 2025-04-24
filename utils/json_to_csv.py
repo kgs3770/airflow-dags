@@ -34,8 +34,7 @@ def convert_json_to_csv():
                 sentiment = analyze_sentiment(text)
                 csv_data.append({
                     'video_id': video_id,
-                    'text': text,
-                    'positive': sentiment['pos'],
+                    # 'text': text.strip().replace(',', '').replace('\n', ''),
                     'negative': sentiment['neg'],
                     'neutral': sentiment['neu'],
                     'compound': sentiment['compound'],
