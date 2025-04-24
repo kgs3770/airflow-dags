@@ -80,5 +80,26 @@ def get_handle_to_comments(youtube, handle):
         'all_comments': all_comments
     }
 
-get_handle_to_comments(youtube, target_handle)
+
+def save_to_hdfs(data, path):
+    from hdfs import InsecureClient
+    client = InsecureClient('http://localhost:9870', user='ubuntu')
+
+    from datetime import datetime
+    current_date = datetime.now().strftime('%y%m%d%H%M')
+    file_name = f'{current_date}.json'
+
+    # /input/yt-date + 2504241144.json
+    hdfs_path = f'{path}/{file_name}'
+
+    import json
+    json_data = json.dumps(data, ensure_ascii=False)
+
+    with client.write(hdfs_path, encoding='utf-8') as writer:
+        writer.write(json_data)
+
+
+data = get_handle_to_comments(youtube, target_handle)
+save_to_hdfs(data, '/input/yt-data')
+
 
