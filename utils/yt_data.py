@@ -16,7 +16,7 @@ def get_channel_id(youtube, handle):
     return response['items'][0]['id']
 
 target_handle = 'mkbhd'
-channel_id = get_channel_id(youtube, target_handle)
+# channel_id = get_channel_id(youtube, target_handle)
 # print(channel_id)
 
 # channel id를 기준으로 최신영상의 id들을 리턴하는 함수
@@ -37,7 +37,7 @@ def get_latest_video_ids(youtube, channel_id):
     return video_ids
 
 
-latest_video_ids = get_latest_video_ids(youtube, channel_id)
+# latest_video_ids = get_latest_video_ids(youtube, channel_id)
 # print(latest_video_ids)
 
 
