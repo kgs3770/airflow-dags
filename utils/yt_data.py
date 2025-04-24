@@ -74,6 +74,7 @@ def get_handle_to_comments(youtube, handle):
     for video_id in latest_video_ids:
         comments = get_comments(youtube, video_id)
         all_comments[video_id] = comments
+        # break
 
     return {
         'handle': handle,
@@ -99,7 +100,7 @@ def save_to_hdfs(data, path):
         writer.write(json_data)
 
 
-data = get_handle_to_comments(youtube, target_handle)
-save_to_hdfs(data, '/input/yt-data')
+# data = get_handle_to_comments(youtube, target_handle)
+# save_to_hdfs(data, '/input/yt-data')
 
 
